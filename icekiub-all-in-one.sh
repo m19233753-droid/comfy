@@ -12,12 +12,13 @@ cd custom_nodes
 
 declare -a nodes=(
   "ltdrdata/ComfyUI-Impact-Pack"
-  "rgthree/comfyui-rgthree-comfy"
-  "RES4LYF/ComfyUI-RES4LYF"               # ClownsharK + Frames Concat
+  "rgthree/rgthree-comfy"
+  "ClownsharkBatwing/RES4LYF"
   "wallen0322/ComfyUI-WanAnimate-Enhancer"
-  "ltdrdata/ComfyUI-KJNodes"               # PathchSageAttentionKJ
-  "Kosinkadink/ComfyUI-VideoHelperSuite"   # VHS
-  "Fannovel16/comfyui-frame-interpolation" # RIFE VFI
+  "kijai/ComfyUI-KJNodes"
+  "Kosinkadink/ComfyUI-VideoHelperSuite"
+  "Fannovel16/comfyui-frame-interpolation"
+  "comfyanonymous/ComfyUI-Manager"  # Добавь это
 )
 
 for repo in "${nodes[@]}"; do
@@ -69,16 +70,16 @@ download "https://huggingface.co/icekiub/WAN-2.2-T2V-FP8-NON-SCALED/resolve/main
 download "https://huggingface.co/lightx2v/Wan2.2-Lightning/resolve/main/Wan2.2-T2V-A14B-4steps-lora-250928/low_noise_model.safetensors" "models/loras/low_noise_model.safetensors"
 download "https://huggingface.co/icekiub/WAN-2.2-T2V-FP8-NON-SCALED/resolve/main/WANTEST2_000000600_low_noise.safetensors" "models/loras/WANTEST2_000000600_low_noise.safetensors"
 
-# === Z-Image Base + Turbo (zbase + zit) ===
-download "https://huggingface.co/Comfy-Org/z_image/resolve/main/split_files/diffusion_models/z_image_bf16.safetensors" "models/unet/z_image_bf16.safetensors"
-download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors" "models/unet/z_image_turbo_bf16.safetensors"
-download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors" "models/vae/ae.safetensors"
-download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors" "models/text_encoders/qwen_3_4b.safetensors"
-download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors" "models/text_encoders/qwen_3_4b_fp8_mixed.safetensors"
+# Z-Image Base + Turbo
+download "https://huggingface.co/Comfy-Org/z_image/resolve/main/split_files/unet/z_image_bf16.safetensors" "models/unet/z_image_bf16.safetensors"
+download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/unet/z_image_turbo_bf16.safetensors" "models/unet/z_image_turbo_bf16.safetensors"
+download "https://huggingface.co/Comfy-Org/z_image/resolve/main/split_files/vae/ae.safetensors" "models/vae/ae.safetensors"  # Уже есть, но ок
+download "https://huggingface.co/Comfy-Org/z_image/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors" "models/text_encoders/qwen_3_4b.safetensors"
+download "https://huggingface.co/Comfy-Org/z_image/resolve/main/split_files/text_encoders/qwen_3_4b_fp8_mixed.safetensors" "models/text_encoders/qwen_3_4b_fp8_mixed.safetensors"  # Если нужно fp8
 
-# === Дополнительные LoRA из workflow ===
-download "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/loras/z_image_turbo_distill_patch_lora_bf16.safetensors" "models/loras/z_image_turbo_distill_patch_lora_bf16.safetensors"  # если нужно
-# LOURTA и nicegirls — если у тебя они есть на HF/Civitai, добавь ссылки сам или кинь мне, я дополню
+# LoRA из zbase
+download "https://huggingface.co/alibaba-pai/Z-Image-Fun-Lora-Distill/resolve/main/Z-Image-Fun-Lora-Distill-8-Steps-2602-ComfyUI.safetensors" "models/loras/Z-Image-Fun-Lora-Distill-8-Steps-2602-ComfyUI.safetensors"
+# Если LOURTA и nicegirls на HF — добавь их URLs здесь
 
 echo "✅ Provisioning завершён! Все модели и ноды на месте."
 echo "Теперь запускай инстанс — workflow’ы должны работать без ошибок missing models."
